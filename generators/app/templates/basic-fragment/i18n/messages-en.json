@@ -1,0 +1,4 @@
+{
+	"application.view.${ title }.content": "Sample content",
+	"application.view.${ title }.welcome": "Welcome"
+}

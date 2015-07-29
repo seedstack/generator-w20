@@ -63,11 +63,6 @@ var dataviz = {
     }
 };
 
-var touch = {
-    "modules": {
-        "touch": {}
-    }
-};
 
 var extra = {
     "modules": {
@@ -82,13 +77,12 @@ var extra = {
 var businessTheme = {
     "modules": {
         "main": {
-            "sideMenuWidth": 100,
+            "sidebar": { "width": 270 },
             "logoUrl": "",
-            "links":  [{label: '', i18n: '', href: '', target: '', security: ''}],
-            "hideConnectivity": false,
+            "links":  [{label: '', i18n: 'custom.link.key', href: 'https://www.google.com', target: '_blank', security: ''}],
+            "hideConnectivity": true,
             "hideCulture": false,
-            "hideSecurity": false,
-            "profileChooser": false
+            "hideSecurity": true
         }
     }
 };
@@ -149,7 +143,8 @@ var psaBrandTheme = {
             "applications": [{'name': '', 'href': '', 'selected': true}],
             "headerLinks": [{label: '', i18n: '', href: '', target: ''}],
             "selectOptionsList": [],
-            "selectOptionsExecute": ""
+            "selectOptionsExecute": "",
+            "sideMenuWidth": 380
         }
     }
 };
@@ -158,9 +153,9 @@ module.exports = {
     core: { path: "bower_components/w20/core/w20-core.w20.json", definition: core },
     ui: { path: "bower_components/w20/ui/w20-ui.w20.json", definition: ui } ,
     dataviz: { path: "bower_components/w20/dataviz/w20-dataviz.w20.json", definition: dataviz },
-    touch: {path:  "bower_components/w20/touch/w20-touch.w20.json", definition: touch },
     extra: { path:"bower_components/w20/extra/w20-extra.w20.json", definition: extra },
     'w20-business-theme': { path:"bower_components/w20-business-theme/w20-business-theme.w20.json", definition: businessTheme },
+
     // todo handle psa specific
     compatibility: { path:"", definition: compatibility },
     'w20-psa-manufacturing-theme': { path:"", definition: psaManufacturing },

@@ -9,7 +9,7 @@ Install [Yeoman](http://yeoman.io/) globally.
 npm install -g yeoman
 ```
 
-Create a directory for your projetct and launch the generator.
+Create a directory for your project and launch the generator.
 
 ```
 yo w20

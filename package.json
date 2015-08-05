@@ -1,9 +1,13 @@
 {
   "name": "generator-w20",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SeedStack web framework (w20) generator",
   "author": "SeedStack",
   "license": "MPL 2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seedstack/generator-w20.git"
+  },
   "keywords": [
       "yeoman-generator",
       "w20",
@@ -14,7 +18,10 @@
       "webapp"
   ],
   "files": [
-      "app"
+      "generators",
+      ".editorconfig",
+      "LICENCE",
+      "README.md"
   ],
   "dependencies": {
     "yeoman-generator": "^0.18.3",

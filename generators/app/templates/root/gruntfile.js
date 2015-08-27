@@ -42,7 +42,7 @@ module.exports = function (grunt) {
         connect: {
             server: {
                 options: {
-                    port: 8888,
+                    port: grunt.option('port') || 8888,
                     base: '.',
                     keepalive: true
                 }

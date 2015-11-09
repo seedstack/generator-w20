@@ -25,24 +25,24 @@ var core = {
             "redirectAfterLogin": "/",
             "persistentRestrictions": false
         },
-        "utils": {}
-    }
-};
-
-var ui = {
-    "modules": {
-        "select": {},
-        "grid": {},
-        "ui": {
-            "expandedRouteCategories": []
-        },
+        "utils": {},
+        "text": {},
         "notifications": {
             "disableNotifications": false,
             "position": "bottom-right",
             "limit": 10,
             "options": {}
         },
-        "text": {}
+        "ui": {
+            "expandedRouteCategories": []
+        }
+    }
+};
+
+var components = {
+    "modules": {
+        "select": {},
+        "grid": {}
     }
 };
 
@@ -64,7 +64,7 @@ var dataviz = {
 };
 
 
-var extra = {
+var extras = {
     "modules": {
         "analytics": {
             "provider": "piwik",
@@ -149,16 +149,25 @@ var psaBrandTheme = {
     }
 };
 
+var bootstrap3 = {};
+
+var bootstrap2 = {};
+
+var material = {};
+
 module.exports = {
-    core: { path: "bower_components/w20/core/w20-core.w20.json", definition: core },
-    ui: { path: "bower_components/w20/ui/w20-ui.w20.json", definition: ui } ,
-    dataviz: { path: "bower_components/w20/dataviz/w20-dataviz.w20.json", definition: dataviz },
-    extra: { path:"bower_components/w20/extra/w20-extra.w20.json", definition: extra },
-    'w20-business-theme': { path:"bower_components/w20-business-theme/w20-business-theme.w20.json", definition: businessTheme },
+    core: { path: "bower_components/w20/w20-core.w20.json", definition: core },
+    components: { path: "bower_components/w20-components/w20-components.w20.json", definition: components } ,
+    dataviz: { path: "bower_components/w20-dataviz/w20-dataviz.w20.json", definition: dataviz },
+    extras: { path:"bower_components/w20-extras/w20-extra.w20.json", definition: extras },
+    'bootstrap-3': { path:"bower_components/w20-bootstrap-3/w20-bootstrap-3.w20.json", definition: bootstrap3 },
+    'bootstrap-2': { path:"bower_components/w20-bootstrap-2/w20-bootstrap-2.w20.json", definition: bootstrap2 },
+    'material': { path:"bower_components/w20-material/w20-material.w20.json", definition: material },
+    'business-theme': { path:"bower_components/w20-business-theme/w20-business-theme.w20.json", definition: businessTheme },
+    'simple-theme': { path:"bower_components/w20-simple-theme/w20-simple-theme.w20.json", definition: simpleTheme },
 
     // todo handle psa specific
     compatibility: { path:"", definition: compatibility },
     'w20-psa-manufacturing-theme': { path:"", definition: psaManufacturing },
-    'w20-psa-brand-theme': { path:"", definition: psaBrandTheme },
-    'w20-simple-theme': { path:"", definition: simpleTheme }
+    'w20-psa-brand-theme': { path:"", definition: psaBrandTheme }
 };

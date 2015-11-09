@@ -1,8 +1,8 @@
 /*jshint node: true */
 'use strict';
 
-var W20_VERSION = 'latest',
-    THEME_VERSION = 'latest';
+var W20_VERSION = '~2.1',
+    THEME_VERSION = '~1.1';
 
 var generators = require('yeoman-generator'),
     _ = require('lodash'),
@@ -74,12 +74,28 @@ module.exports = generators.Base.extend({
                 type: 'checkbox',
                 name: 'w20Fragments',
                 message: 'W20 fragments to use aside core ? ',
-                choices: ['ui', 'dataviz', 'extra'],
-                default: ['ui']
+                choices: ['components', 'dataviz', 'extras'],
+                default: ['components']
             }, function (answers) {
 
                 w20Project.w20Fragments = answers.w20Fragments.concat(['core']);
 
+            }, self);
+        },
+
+        w20CSSFramework: function () {
+            var self = this;
+
+            self._prompt({
+                type: 'list',
+                name: 'cssFramework',
+                message: 'CSS framework to use ? ',
+                choices: ['bootstrap-3', 'bootstrap-2', 'material', 'none'],
+                default: ['bootstrap-3']
+            }, function (answers) {
+                if (answers.cssFramework !== 'none') {
+                    w20Project.w20Fragments = w20Project.w20Fragments.concat(answers.cssFramework);
+                }
             }, self);
         },
 
@@ -90,8 +106,11 @@ module.exports = generators.Base.extend({
                 type: 'list',
                 name: 'theme',
                 message: 'Use a W20 theme ?',
-                choices: ['w20-business-theme', 'none'],
-                default: ['w20-business-theme']
+                choices: ['business-theme', 'simple-theme', 'none'],
+                default: ['business-theme'],
+                when: function () {
+                    return _.includes(w20Project.w20Fragments, 'bootstrap-3');
+                }
             }, function (answers) {
 
                 if (answers.theme !== 'none') {
@@ -105,14 +124,21 @@ module.exports = generators.Base.extend({
     configuring: function () {
         this._print('Configuring application...');
 
-        // Configure project bower.json
-        var dependencies = {
-            "angular-mocks": "~1.3.6",
-            "w20": W20_VERSION
-        };
+        var dependencies = {};
+
+        // Add required fragments to bower.json dependencies
+        _.each(w20Project.w20Fragments, function (fragment) {
+            dependencies['w20-' + fragment] = W20_VERSION;
+        });
+
+        delete dependencies['w20-core'];
+        dependencies['w20'] = W20_VERSION;
+        dependencies['angular-mocks'] = '~1.3.6';
+
         if (w20Project.theme) {
-            dependencies[w20Project.theme] = THEME_VERSION;
+            dependencies['w20-' + w20Project.theme] = THEME_VERSION;
         }
+
         w20Project.bower = {
             name: w20Project.fragment,
             version: "0.1.0",

@@ -1,8 +1,8 @@
 /*jshint node: true */
 'use strict';
 
-var W20_VERSION = '~2.1',
-    THEME_VERSION = '~1.1';
+var W20_VERSION = '^2.0',
+    THEME_VERSION = '^1.2';
 
 var generators = require('yeoman-generator'),
     _ = require('lodash'),

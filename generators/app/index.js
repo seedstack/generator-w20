@@ -1,8 +1,18 @@
 /*jshint node: true */
 'use strict';
 
-var W20_VERSION = '^2.0',
-    THEME_VERSION = '^1.2';
+var VERSIONS = {
+  'core': '~2.2.2',
+  'components': '~2.2.0',
+  'dataviz': '~2.1.1',
+  'extras': '~2.1.1',
+  'material': '~2.1.4',
+  'bootstrap-2': '~2.1.2',
+  'bootstrap-3': '~2.1.2',
+  'business-theme': '~1.1.3',
+  'simple-theme': '~3.1.1',
+  'angular-mocks': '~1.4.8'
+};
 
 var generators = require('yeoman-generator'),
     _ = require('lodash'),
@@ -73,9 +83,9 @@ module.exports = generators.Base.extend({
             self._prompt({
                 type: 'checkbox',
                 name: 'w20Fragments',
-                message: 'W20 fragments to use aside core ? ',
+                message: 'W20 fragments to use in addition to core ? ',
                 choices: ['components', 'dataviz', 'extras'],
-                default: ['components']
+                default: []
             }, function (answers) {
 
                 w20Project.w20Fragments = answers.w20Fragments.concat(['core']);
@@ -90,7 +100,7 @@ module.exports = generators.Base.extend({
                 type: 'list',
                 name: 'cssFramework',
                 message: 'CSS framework to use ? ',
-                choices: ['bootstrap-3', 'bootstrap-2', 'material', 'none'],
+                choices: ['bootstrap-3', 'material', 'none', '[deprecated] bootstrap-2'],
                 default: ['bootstrap-3']
             }, function (answers) {
                 if (answers.cssFramework !== 'none') {
@@ -128,21 +138,23 @@ module.exports = generators.Base.extend({
 
         // Add required fragments to bower.json dependencies
         _.each(w20Project.w20Fragments, function (fragment) {
-            dependencies['w20-' + fragment] = W20_VERSION;
+            dependencies['w20-' + fragment] = VERSIONS[fragment];
         });
 
+        dependencies['w20'] = dependencies['w20-core'];
         delete dependencies['w20-core'];
-        dependencies['w20'] = W20_VERSION;
-        dependencies['angular-mocks'] = '~1.3.6';
 
         if (w20Project.theme) {
-            dependencies['w20-' + w20Project.theme] = THEME_VERSION;
+            dependencies['w20-' + w20Project.theme] = VERSIONS[w20Project.theme];
         }
 
         w20Project.bower = {
             name: w20Project.fragment,
-            version: "0.1.0",
-            dependencies: dependencies
+            version: '0.0.1',
+            dependencies: dependencies,
+            devDependencies: {
+              'angular-mocks': VERSIONS['angular-mocks']
+            }
         };
 
         // Set the home view path

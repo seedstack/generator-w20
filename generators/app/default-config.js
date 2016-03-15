@@ -101,54 +101,6 @@ var simpleTheme = {
     }
 };
 
-var compatibility = {
-
-};
-
-var psaLegacyTheme = {
-    "modules": {
-        "menu": {
-            "logoUrl": "/",
-            "links":  [{label: '', i18n: '', href: '', target: '', security: ''}],
-            "hideConnectivity": false,
-            "hideCulture": false,
-            "hideSecurity": false,
-            "sidebar": {
-                "cover": false
-            }
-        }
-    }
-};
-
-var psaManufacturing = {
-    "modules": {
-        "menu": {
-            "sideMenuWidth": 100,
-            "logoUrl": "/",
-            "links":  [{label: '', i18n: '', href: '', target: '', security: ''}],
-            "hideBookmarks": false,
-            "hideNotifications": false,
-            "hideConnectivity": false,
-            "hideCulture": false,
-            "hideSecurity": false,
-            "profileChooser": false
-        }
-    }
-};
-
-var psaBrandTheme = {
-    "modules": {
-        "menu": {
-            "logoUrl": "",
-            "applications": [{'name': '', 'href': '', 'selected': true}],
-            "headerLinks": [{label: '', i18n: '', href: '', target: ''}],
-            "selectOptionsList": [],
-            "selectOptionsExecute": "",
-            "sideMenuWidth": 380
-        }
-    }
-};
-
 var bootstrap3 = {};
 
 var bootstrap2 = {};
@@ -165,9 +117,4 @@ module.exports = {
     'material': { path:"bower_components/w20-material/w20-material.w20.json", definition: material },
     'business-theme': { path:"bower_components/w20-business-theme/w20-business-theme.w20.json", definition: businessTheme },
     'simple-theme': { path:"bower_components/w20-simple-theme/w20-simple-theme.w20.json", definition: simpleTheme },
-
-    // todo handle psa specific
-    compatibility: { path:"", definition: compatibility },
-    'w20-psa-manufacturing-theme': { path:"", definition: psaManufacturing },
-    'w20-psa-brand-theme': { path:"", definition: psaBrandTheme }
 };

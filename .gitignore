@@ -1,5 +1,7 @@
-# ignore dependencies
+# NPM
 node_modules
+npm-debug.log
 
-#IDE files
+# IDE files
 .idea
+*.iml
